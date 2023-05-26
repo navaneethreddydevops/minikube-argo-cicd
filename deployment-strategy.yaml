@@ -15,8 +15,8 @@ spec:
         app: nginx-deployment-strategy
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
+      - name: busybox
+        image: busybox
         ports:
         - containerPort: 80
   strategy:
