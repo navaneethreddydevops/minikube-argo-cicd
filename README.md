@@ -17,6 +17,7 @@ kubectl run nginx --image=nginx:alpine
 ```bash
 kubectl port-forward nginx 8080:80
 ```
+
                             ^    ^
                             |    |
                             |    |
