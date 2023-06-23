@@ -26,3 +26,7 @@ kubectl port-forward nginx 8080:80
 ```bash
 http://localhost:8080
 ```
+
+```bash
+minikube tunnel
+```
