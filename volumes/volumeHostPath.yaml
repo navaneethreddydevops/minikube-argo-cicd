@@ -1,0 +1,29 @@
+# Volume mount for mounting the directory of host machine to the container running in a pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "docker-volume"
+  labels:
+    app: "docker-volume"
+spec:
+  containers:
+    - name: docker
+      image: docker
+      command: ["sleep"]
+      args: ["100000"]
+      resources:
+        limits:
+          cpu: 200m
+          memory: 500Mi
+        requests:
+          cpu: 100m
+          memory: 200Mi
+      volumeMounts:
+        - name: docker-socket
+          mountPath: /var/run/docker.sock
+  volumes:
+    - name: docker-socket
+      hostPath:
+        path: /var/run/docker.sock
+        type: Socket
+  restartPolicy: Always
