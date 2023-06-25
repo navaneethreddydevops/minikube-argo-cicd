@@ -1,3 +1,4 @@
+# Loading each key value form a config map
 apiVersion: apps/v1
 kind: Deployment
 metadata:
