@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: minikube-argo-cicd
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 1
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.14.0
+          resources:
+            limits:
+              cpu: 100m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          env:
+            - name: http_proxy
+              valueFrom:
+                configMapKeyRef:
+                  name: app-settings
+                  key: http_proxy
+            - name: https_proxy
+              valueFrom:
+                configMapKeyRef:
+                  name: app-settings
+                  key: https_proxy
+            - name: HTTP_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: app-settings
+                  key: HTTP_PROXY
+            - name: HTTPS_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: app-settings
+                  key: HTTPS_PROXY
+            - name: no_proxy
+              valueFrom:
+                configMapKeyRef:
+                  name: app-settings
+                  key: no_proxy
+            - name: NO_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: app-settings
+                  key: NO_PROXY
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
