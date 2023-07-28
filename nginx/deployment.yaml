@@ -36,17 +36,17 @@ spec:
               cpu: "200m"
               memory: "32Mi"
           imagePullPolicy: Always
-          # readinessProbe:
-          #     initialDelaySeconds: 30
-          #     periodSeconds: 20
-          #     httpGet:
-          #       port: 80
-          #       path: "/"
-          # livenessProbe:
-          #     initialDelaySeconds: 60
-          #     periodSeconds: 20
-          #     httpGet:
-          #       port: 80
-          #       path: "/"
+          readinessProbe:
+              initialDelaySeconds: 30
+              periodSeconds: 20
+              httpGet:
+                port: 80
+                path: "/"
+          livenessProbe:
+              initialDelaySeconds: 60
+              periodSeconds: 20
+              httpGet:
+                port: 80
+                path: "/"
           ports:
             - containerPort: 80
