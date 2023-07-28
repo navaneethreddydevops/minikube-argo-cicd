@@ -23,11 +23,11 @@ spec:
         image: nginx:1.14.0
         resources:
           limits:
-            cpu: 100m
-            memory: 200Mi
+            cpu: "1"
+            memory: "1Gi"
           requests:
-            cpu: 100m
-            memory: 200Mi
+            cpu: "0.5"
+            memory: "1Ki"
         imagePullPolicy: Always
         ports:
           - containerPort: 80
